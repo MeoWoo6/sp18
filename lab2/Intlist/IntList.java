@@ -77,23 +77,78 @@ public class IntList {
 
     /**
      * Returns a list consisting of the elements of A followed by the
-     * *  elements of B.  May modify items of A. Don't use 'new'.
+     * elements of B.  May modify items of A. Don't use 'new'.
      */
 
+    /**
+     * Recursive Method, Destructive.
+     */
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+       if( A == null){
+           A = B;
+       }else{
+           A.rest = dcatenate(A.rest, B);
+       }
+       return A;
     }
+    /**
+     * Iterative Method, Destructive. (CYCLE EXISTS)
+     */
+    public static IntList dcatenateIter(IntList A, IntList B) {
+        IntList temp = A;
+        while(temp.rest != null){
+            temp = temp.rest;
+            continue;
+        }
+        temp.rest = B;
+        return A;
+    }
+
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
+
+    /**
+     * Recursive Method, Non-Destructive.
+     */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if(A == null){
+            return B;
+        }else{
+            return new IntList(A.first, catenate(A.rest, B));
+        }
+    }
+    /**
+     * Iterative Method, Non-Destructive.
+     */
+    public static IntList catenateIter(IntList A, IntList B) {
+        //TODO:  fill in method
+        if (A == null) {
+            return B;
+        }
+        IntList ptr = A;
+        IntList res = new IntList(ptr.first, null);
+        IntList ptr1 = res;
+        while (ptr.rest != null) {
+            ptr1.rest = new IntList(ptr.rest.first, null);
+            ptr = ptr.rest;
+            ptr1 = ptr1.rest;
+        }
+        ptr1.rest = B;
+        return res;
     }
 
+    public static void main(String[] args) {
+        IntList A = IntList.of(0, 1, 2, 3);
+        IntList B = IntList.of(4, 5, 6, 7);
+//        IntList res = dcatenate(A, B);
+        IntList res2 = catenate(A, B);
+//        IntList res3 = catenateIter(A, B);
+    }
 
 
 
