@@ -146,7 +146,8 @@ public class IntList {
         IntList A = IntList.of(0, 1, 2, 3);
         IntList B = IntList.of(4, 5, 6, 7);
 //        IntList res = dcatenate(A, B);
-        IntList res2 = catenate(A, B);
+        IntList res4 = dcatenateIter(A, B);
+//        IntList res2 = catenate(A, B);
 //        IntList res3 = catenateIter(A, B);
     }
 
