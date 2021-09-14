@@ -150,7 +150,7 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public T getRecursiveHelper(Node node, int index) {
+    private T getRecursiveHelper(Node node, int index) {
         if (index == 0) {
             return node.item;
         } else {
