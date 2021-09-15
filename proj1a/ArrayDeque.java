@@ -94,10 +94,9 @@ public class ArrayDeque<T> {
         }
         T item = arraydeque[(nextFirst + 1) % capacity];
         size--;
+        nextFirst = (nextFirst + 1) % capacity;
         if (4 * size < capacity && capacity >= 16) {
             resize(capacity / 2, (nextFirst + 1) % capacity);
-        } else {
-            nextFirst = (nextFirst + 1) % capacity;
         }
         return item;
     }

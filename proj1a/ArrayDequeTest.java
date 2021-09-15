@@ -104,33 +104,110 @@ public class ArrayDequeTest {
     }
 
     /**
-     * if the data structure goes from empty,
-     * to some non-zero size (e.g. 4 items) back down to zero again
+     * fill up, empty, fill up again
      * @return
      */
-    public static boolean backtoemptyTest() {
+    public static boolean backtoemptyTest1() {
+        boolean passed;
+        ArrayDeque<Integer> A = new ArrayDeque<>();
+        A.addFirst(0);
+        A.addFirst(1);
+        A.addFirst(2);
+        A.addFirst(3);
+        A.addFirst(4);
+        A.addFirst(5);
+        A.addFirst(6);
+        A.addFirst(7);
+        passed = A.removeFirst() == 7;
+        passed = passed && (A.removeFirst() == 6);
+        passed = passed && (A.removeFirst() == 5);
+        passed = passed && (A.removeFirst() == 4);
+        passed = passed && (A.removeFirst() == 3);
+        passed = passed && (A.removeFirst() == 2);
+        passed = passed && (A.removeFirst() == 1);
+        passed = passed && (A.removeFirst() == 0);
+        A.addFirst(0);
+        A.addFirst(1);
+        A.addFirst(2);
+        A.addFirst(3);
+        A.addFirst(4);
+        A.addFirst(5);
+        A.addFirst(6);
+        A.addFirst(7);
+        passed = passed && (A.removeFirst() == 7);
+        return passed;
+    }
+
+    public static boolean backtoemptyTest2() {
+        boolean passed;
+        ArrayDeque<Integer> A = new ArrayDeque<>();
+        A.addLast(0);
+        A.addLast(1);
+        A.addLast(2);
+        A.addLast(3);
+        A.addLast(4);
+        A.addLast(5);
+        A.addLast(6);
+        A.addLast(7);
+        passed = A.removeLast() == 7;
+        passed = passed && (A.removeLast() == 6);
+        passed = passed && (A.removeLast() == 5);
+        passed = passed && (A.removeLast() == 4);
+        passed = passed && (A.removeLast() == 3);
+        passed = passed && (A.removeLast() == 2);
+        passed = passed && (A.removeLast() == 1);
+        passed = passed && (A.removeLast() == 0);
+        A.addLast(0);
+        A.addLast(1);
+        A.addLast(2);
+        A.addLast(3);
+        A.addLast(4);
+        A.addLast(5);
+        A.addLast(6);
+        A.addLast(7);
+        passed = passed && (A.removeLast() == 7);
+        passed = passed && (A.removeLast() == 6);
+        return passed;
+    }
+
+    public static boolean backtoemptyTest3() {
         boolean passed;
         ArrayDeque<Integer> A = new ArrayDeque<>();
         A.addFirst(0);
         A.addLast(1);
+        A.addFirst(2);
+        A.addLast(3);
+        A.addFirst(4);
+        A.addLast(5);
+        A.addFirst(6);
+        A.addLast(7);
+        passed = A.removeLast() == 7;
+        passed = passed && (A.removeLast() == 5);
+        passed = passed && (A.removeLast() == 3);
+        passed = passed && (A.removeLast() == 1);
+        passed = passed && (A.removeLast() == 0);
+        passed = passed && (A.removeLast() == 2);
+        passed = passed && (A.removeLast() == 4);
+        passed = passed && (A.removeLast() == 6);
+        A.addLast(0);
+        A.addFirst(1);
         A.addLast(2);
         A.addFirst(3);
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.removeLast();
-        A.addLast(1);
-        A.addLast(2);
-        passed = A.get(1) == 2;
-        passed = passed && (A.removeFirst() == 1);
+        A.addLast(4);
+        A.addFirst(5);
+        A.addLast(6);
+        A.addFirst(7);
+        passed = passed && (A.removeFirst() == 7);
+        passed = passed && (A.removeFirst() == 5);
         return passed;
     }
-
     public static void main(String[] args) {
 //        printTestStatus(addAndgetTest());
 //        printTestStatus(removeTest());
 //        printTestStatus(sizeAndemptyTest());
-        printTestStatus(resizeTest());
-//        printTestStatus(backtoemptyTest());
+//        printTestStatus(resizeTest());
+//        printTestStatus(backtoemptyTest1());
+//        printTestStatus(backtoemptyTest2());
+        printTestStatus(backtoemptyTest3());
     }
 }
