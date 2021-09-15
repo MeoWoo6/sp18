@@ -21,13 +21,9 @@ public class ArrayDeque<T> {
         arraydeque = (T[]) new Object[capacity];
     }
 
-    int getCapacity() {
-        return capacity;
-    }
-
     /**
      * Adds an item of type T to the front of the deque.
-     * @param item
+     * @param item the value inserted into the deque
      */
     public void addFirst(T item) {
         arraydeque[nextFirst] = item;
@@ -60,9 +56,8 @@ public class ArrayDeque<T> {
     public boolean isEmpty() {
         if (size == 0) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -123,8 +118,8 @@ public class ArrayDeque<T> {
      *  Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      *  If no such item exists, returns null. Must not alter the deque!
      *  Be aware that the given parameter index is not the "real" index in the ArrayDeque!
-     * @param index
-     * @return
+     * @param index index
+     * @return i-th item
      */
     public T get(int index) {
         if (index >= size || index < 0) {
