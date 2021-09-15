@@ -21,7 +21,7 @@ public class ArrayDeque<T> {
         arraydeque = (T[]) new Object[capacity];
     }
 
-    public int getCapacity() {
+    int getCapacity() {
         return capacity;
     }
 
