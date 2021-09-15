@@ -1,14 +1,18 @@
 /**
- * Deque in Array
+ * @author Meo
  * @param <T>
  */
 public class ArrayDeque<T> {
+
     private int capacity;
     private int size;
     private int nextFirst;
     private int nextLast;
     private T[] arraydeque;
 
+    /**
+     * Constructor
+     */
     public ArrayDeque() {
         size = 0;
         capacity = 8;
@@ -29,7 +33,7 @@ public class ArrayDeque<T> {
         arraydeque[nextFirst] = item;
         size++;
         if (size == capacity) {
-            resize(capacity * 2);
+            resize(capacity * 2, nextFirst);
         } else {
             nextFirst = (nextFirst + capacity - 1) % capacity;
         }
@@ -43,7 +47,7 @@ public class ArrayDeque<T> {
         arraydeque[nextLast] = item;
         size++;
         if (size == capacity) {
-            resize(capacity * 2);
+            resize(capacity * 2, (nextFirst + 1) % capacity);
         } else {
             nextLast = (nextLast + 1) % capacity;
         }
@@ -65,7 +69,9 @@ public class ArrayDeque<T> {
      * Returns the number of items in the deque.
      * @return
      */
-    public int size() {return size;}
+    public int size() {
+        return size;
+    }
 
     /**
      * Prints the items in the deque from first to last, separated by a space.
@@ -89,7 +95,7 @@ public class ArrayDeque<T> {
         T item = arraydeque[(nextFirst + 1) % capacity];
         size--;
         if (4 * size < capacity && capacity >= 16) {
-            resize(capacity / 2);
+            resize(capacity / 2, (nextFirst + 1) % capacity);
         } else {
             nextFirst = (nextFirst + 1) % capacity;
         }
@@ -107,7 +113,7 @@ public class ArrayDeque<T> {
         T item = arraydeque[(nextLast - 1 + capacity) % capacity];
         size--;
         if (4 * size < capacity && capacity >= 16) {
-            resize(capacity / 2);
+            resize(capacity / 2, (nextFirst + 1) % capacity);
         } else {
             nextLast = (nextLast - 1 + capacity) % capacity;
         }
@@ -129,12 +135,11 @@ public class ArrayDeque<T> {
         return arraydeque[ptr];
     }
 
-    private void resize(int capacity) {
+    private void resize(int capacity, int firstIndex) {
         T[] resizeArray = (T[]) new Object[capacity];
-        int index = (nextFirst + 1) % this.capacity;
         for (int i = 0; i < size; i++) {
-            resizeArray[i] = arraydeque[index];
-            index = (index + 1) % this.capacity;
+            resizeArray[i] = arraydeque[firstIndex];
+            firstIndex = (firstIndex + 1) % this.capacity;
         }
         this.capacity = capacity;
         nextFirst = capacity - 1;
