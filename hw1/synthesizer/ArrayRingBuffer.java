@@ -1,5 +1,6 @@
 package synthesizer; // TODO: Make sure to make this class a part of the synthesizer package
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
@@ -68,6 +69,34 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>{
         }
         return rb[first];
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new BufferIterator();
+    }
+
+    private class BufferIterator implements Iterator<T> {
+        private int num;
+        private int pos;
+
+        BufferIterator() {
+            num = 0;
+            pos = first;
+        }
+        @Override
+        public boolean hasNext() {
+            return num < fillCount;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = rb[pos];
+            pos = (pos + 1) % capacity;
+            num++;
+            return returnItem;
+        }
+    }
+
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
 }
