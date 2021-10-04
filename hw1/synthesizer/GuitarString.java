@@ -56,9 +56,4 @@ public class GuitarString {
         // TODO: Return the correct thing.
         return buffer.peek();
     }
-
-    public static void main(String[] args) {
-        GuitarString gs = new GuitarString(4410);
-        gs.pluck();
-    }
 }
